@@ -6,6 +6,14 @@
     <title>Posaunenchor Auftrittsverwaltung</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posaunenchor Auftrittsverwaltung</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
     <header>
         <h1>Posaunenchor Auftritte</h1>
@@ -14,32 +22,11 @@
     <main>
         <section id="auftrittsliste">
             <h2>Kommende Auftritte</h2>
-            <ul id="auftritte">
-                <!-- Auftrittsliste wird hier erscheinen -->
-            </ul>
+            <table id="auftritteTable">
+                <!-- Die Tabelle wird dynamisch mit JavaScript generiert -->
+            </table>
         </section>
-
-        <section id="anmeldung">
-            <h2>An- oder Abmelden</h2>
-            <form id="anmeldeFormular">
-                <label for="name">Dein Name:</label>
-                <input type="text" id="name" name="name" required>
-                <br>
-                <label for="auftritt">Auftritt:</label>
-                <select id="auftritt" name="auftritt">
-                    <!-- Optionen für die Auftritte werden hier erscheinen -->
-                </select>
-                <br>
-                <label>
-                    <input type="radio" name="status" value="Zusage" required> Zusage
-                </label>
-                <label>
-                    <input type="radio" name="status" value="Absage"> Absage
-                </label>
-                <br>
-                <button type="submit">Abschicken</button>
-            </form>
-        </section>
+        <button id="speichernBtn">Speichern</button>
     </main>
 
     <footer>

@@ -1,36 +1,86 @@
-// Dummy-Daten für Auftritte
+// Liste der Mitspieler
+const mitglieder = ['Anna', 'Ben', 'Clara', 'David', 'Emma'];
+
+// Liste der Auftritte
 const auftritte = [
-    { id: 1, name: "Weihnachtskonzert" },
-    { id: 2, name: "Frühlingsfest" },
-    { id: 3, name: "Jubiläumskonzert" }
+    { id: 1, name: "Weihnachtskonzert", datum: "2024-12-24" },
+    { id: 2, name: "Frühlingsfest", datum: "2024-05-15" },
+    { id: 3, name: "Jubiläumskonzert", datum: "2024-08-01" }
 ];
 
-// Auftrittsliste anzeigen
-const auftrittListe = document.getElementById("auftritte");
-const auftrittSelect = document.getElementById("auftritt");
+// Funktion zum Erstellen der Tabelle
+function erstelleTabelle() {
+    const table = document.getElementById('auftritteTable');
 
-auftritte.forEach(auftritt => {
-    const listItem = document.createElement("li");
-    listItem.textContent = auftritt.name;
-    auftrittListe.appendChild(listItem);
+    // Tabellenkopf erstellen
+    let thead = document.createElement('thead');
+    let headerRow = document.createElement('tr');
 
-    const option = document.createElement("option");
-    option.value = auftritt.id;
-    option.textContent = auftritt.name;
-    auftrittSelect.appendChild(option);
+    // Erste Spalte: Auftrittsname und Datum
+    let thAuftritt = document.createElement('th');
+    thAuftritt.textContent = 'Auftritt';
+    headerRow.appendChild(thAuftritt);
+
+    // Für jedes Mitglied eine Spalte hinzufügen
+    mitglieder.forEach(mitglied => {
+        let th = document.createElement('th');
+        th.textContent = mitglied;
+        headerRow.appendChild(th);
+    });
+
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    // Tabellenkörper erstellen
+    let tbody = document.createElement('tbody');
+
+    auftritte.forEach(auftritt => {
+        let row = document.createElement('tr');
+
+        // Auftrittsinformationen (Name und Datum)
+        let tdAuftritt = document.createElement('td');
+        tdAuftritt.textContent = `${auftritt.name} (${auftritt.datum})`;
+        row.appendChild(tdAuftritt);
+
+        // Für jedes Mitglied eine Zusage/Absage-Option
+        mitglieder.forEach(mitglied => {
+            let td = document.createElement('td');
+
+            let select = document.createElement('select');
+            select.name = `status-${auftritt.id}-${mitglied}`;
+
+            let optionZusage = document.createElement('option');
+            optionZusage.value = 'Zusage';
+            optionZusage.textContent = 'Zusage';
+            select.appendChild(optionZusage);
+
+            let optionAbsage = document.createElement('option');
+            optionAbsage.value = 'Absage';
+            optionAbsage.textContent = 'Absage';
+            select.appendChild(optionAbsage);
+
+            td.appendChild(select);
+            row.appendChild(td);
+        });
+
+        tbody.appendChild(row);
+    });
+
+    table.appendChild(tbody);
+}
+
+// Speichern der Zu- und Absagen
+document.getElementById('speichernBtn').addEventListener('click', function() {
+    auftritte.forEach(auftritt => {
+        mitglieder.forEach(mitglied => {
+            let select = document.querySelector(`select[name="status-${auftritt.id}-${mitglied}"]`);
+            let status = select.value;
+            console.log(`Auftritt: ${auftritt.name}, Mitglied: ${mitglied}, Status: ${status}`);
+            // Hier kannst du den Status für jedes Mitglied und Auftritt speichern (z.B. in einer Datenbank oder Datei)
+        });
+    });
+    alert("Zu- und Absagen gespeichert!");
 });
 
-// Formular verarbeiten
-document.getElementById("anmeldeFormular").addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    const name = document.getElementById("name").value;
-    const auftrittId = document.getElementById("auftritt").value;
-    const status = document.querySelector('input[name="status"]:checked').value;
-
-    console.log("Name:", name);
-    console.log("Auftritt:", auftritte.find(a => a.id == auftrittId).name);
-    console.log("Status:", status);
-
-    alert("Danke für deine Anmeldung!");
-});
+// Initialisiere die Tabelle
+erstelleTabelle();
