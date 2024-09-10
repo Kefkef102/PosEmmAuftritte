@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("Tabelle wird erstellt...");
     const table = document.getElementById('auftritteTable');
 
     if (!table) {
