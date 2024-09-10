@@ -65,10 +65,9 @@ document.addEventListener('DOMContentLoaded', function() {
             mitglieder.forEach(mitglied => {
                 let td = document.createElement('td');
 
-                // Container für die Radio-Buttons, um sie untereinander anzuordnen
-                let radioContainer = document.createElement('div');
-                radioContainer.style.display = 'flex';
-                radioContainer.style.flexDirection = 'column'; // Damit die Radio-Buttons untereinander angezeigt werden
+                // Wrapper für die Radio-Buttons, um sie untereinander zu platzieren
+                let divWrapper = document.createElement('div');
+                divWrapper.classList.add('radio-wrapper'); // Neue CSS-Klasse für Formatierung
 
                 // Noch nicht abgestimmt (Standard)
                 let radioNichtAbgestimmt = document.createElement('input');
@@ -123,16 +122,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
 
-                // Radio-Buttons und Labels in den Container hinzufügen
-                radioContainer.appendChild(radioNichtAbgestimmt);
-                radioContainer.appendChild(labelNichtAbgestimmt);
-                radioContainer.appendChild(radioZusage);
-                radioContainer.appendChild(labelZusage);
-                radioContainer.appendChild(radioAbsage);
-                radioContainer.appendChild(labelAbsage);
+                // Radio-Buttons und Labels zum Wrapper hinzufügen
+                divWrapper.appendChild(radioNichtAbgestimmt);
+                divWrapper.appendChild(labelNichtAbgestimmt);
+                divWrapper.appendChild(document.createElement('br')); // Zeilenumbruch
 
-                // Container in die Zelle hinzufügen
-                td.appendChild(radioContainer);
+                divWrapper.appendChild(radioZusage);
+                divWrapper.appendChild(labelZusage);
+                divWrapper.appendChild(document.createElement('br')); // Zeilenumbruch
+
+                divWrapper.appendChild(radioAbsage);
+                divWrapper.appendChild(labelAbsage);
+
+                // Wrapper zur Zelle hinzufügen
+                td.appendChild(divWrapper);
                 row.appendChild(td);
             });
 
