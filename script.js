@@ -6,16 +6,16 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    const mitglieder = ['Andreas', 'Uta', 'Johanna', 'Karola', 'Kevin','Nikolai'];
+    const mitglieder = ['Andreas', 'Uta', 'Johanna', 'Karola', 'Kevin', 'Nikolai'];
     const auftritte = [
         { id: 1, name: "Erntedankfest", datum: "06.10.2024" },
-        { id: 2, name: "Gottesdienst zum Ordinationsjubiläum", datum: "25.20.2024" },
+        { id: 2, name: "Gottesdienst zum Ordinationsjubiläum", datum: "25.10.2024" },  // Korrigiertes Datum
         { id: 3, name: "Martinsumzug", datum: "08.11.2024" },
-	{ id: 4, name: "Weihnachtsmarkt", datum: "01.12.2024" },
-	{ id: 5, name: "Adventskonzert", datum: "08.12.2024" },
-	{ id: 6, name: "Weihnachtsmarkt", datum: "14.12.2024" },
-	{ id: 7, name: "Kurendeblasen", datum: "22.12.2024" },
-	{ id: 8, name: "Heilig Abend", datum: "24.12.2024" },
+        { id: 4, name: "Weihnachtsmarkt", datum: "01.12.2024" },
+        { id: 5, name: "Adventskonzert", datum: "08.12.2024" },
+        { id: 6, name: "Weihnachtsmarkt", datum: "14.12.2024" },
+        { id: 7, name: "Kurendeblasen", datum: "22.12.2024" },
+        { id: 8, name: "Heilig Abend", datum: "24.12.2024" },
     ];
 
     function erstelleTabelle() {
@@ -86,4 +86,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
     erstelleTabelle();
 });
+
 
