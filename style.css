@@ -5,13 +5,6 @@ body {
     background-color: #f4f4f4;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
 header {
     background-color: #333;
     color: #fff;
@@ -46,6 +39,15 @@ th {
     background-color: #f2f2f2;
 }
 
+/* Styling for the radio buttons wrapper */
+.radio-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center; /* Ensures radio buttons are centered vertically */
+}
+
+/* Buttons Styling */
 button {
     padding: 10px 20px;
     background-color: #4CAF50;
