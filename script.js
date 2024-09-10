@@ -78,6 +78,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 optionAbsage.textContent = 'Absage';
                 select.appendChild(optionAbsage);
 
+                // Event-Listener hinzufügen, um die Farbe bei Auswahl zu ändern
+                select.addEventListener('change', function() {
+                    if (select.value === 'Zusage') {
+                        td.style.backgroundColor = 'lightgreen';
+                    } else if (select.value === 'Absage') {
+                        td.style.backgroundColor = 'lightcoral';
+                    } else {
+                        td.style.backgroundColor = ''; // Keine Auswahl, Standardfarbe
+                    }
+                });
+
                 td.appendChild(select);
                 row.appendChild(td);
             });
