@@ -65,6 +65,11 @@ document.addEventListener('DOMContentLoaded', function() {
             mitglieder.forEach(mitglied => {
                 let td = document.createElement('td');
 
+                // Container für die Radio-Buttons, um sie untereinander anzuordnen
+                let radioContainer = document.createElement('div');
+                radioContainer.style.display = 'flex';
+                radioContainer.style.flexDirection = 'column'; // Damit die Radio-Buttons untereinander angezeigt werden
+
                 // Noch nicht abgestimmt (Standard)
                 let radioNichtAbgestimmt = document.createElement('input');
                 radioNichtAbgestimmt.type = 'radio';
@@ -118,14 +123,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
 
-                // Radio-Buttons und Labels zur Zelle hinzufügen
-                td.appendChild(radioNichtAbgestimmt);
-                td.appendChild(labelNichtAbgestimmt);
-                td.appendChild(radioZusage);
-                td.appendChild(labelZusage);
-                td.appendChild(radioAbsage);
-                td.appendChild(labelAbsage);
+                // Radio-Buttons und Labels in den Container hinzufügen
+                radioContainer.appendChild(radioNichtAbgestimmt);
+                radioContainer.appendChild(labelNichtAbgestimmt);
+                radioContainer.appendChild(radioZusage);
+                radioContainer.appendChild(labelZusage);
+                radioContainer.appendChild(radioAbsage);
+                radioContainer.appendChild(labelAbsage);
 
+                // Container in die Zelle hinzufügen
+                td.appendChild(radioContainer);
                 row.appendChild(td);
             });
 
@@ -137,4 +144,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
     erstelleTabelle();
 });
-
