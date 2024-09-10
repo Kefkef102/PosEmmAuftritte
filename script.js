@@ -81,10 +81,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
     erstelleTabelle();
 });
-
-
-        table.appendChild(tbody);
-    }
-
-    erstelleTabelle();
-});
