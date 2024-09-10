@@ -6,11 +6,16 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    const mitglieder = ['Anna', 'Ben', 'Clara', 'David', 'Emma'];
+    const mitglieder = ['Andreas', 'Uta', 'Johanna', 'Karola', 'Kevin','Nikolai'];
     const auftritte = [
-        { id: 1, name: "Weihnachtskonzert", datum: "2024-12-24" },
-        { id: 2, name: "Frühlingsfest", datum: "2024-05-15" },
-        { id: 3, name: "Jubiläumskonzert", datum: "2024-08-01" }
+        { id: 1, name: "Erntedankfest", datum: "06.10.2024" },
+        { id: 2, name: "Gottesdienst zum Ordinationsjubiläum", datum: "25.20.2024" },
+        { id: 3, name: "Martinsumzug", datum: "08.11.2024" },
+	{ id: 4, name: "Weihnachtsmarkt", datum: "01.12.2024" },
+	{ id: 5, name: "Adventskonzert", datum: "08.12.2024" },
+	{ id: 6, name: "Weihnachtsmarkt", datum: "14.12.2024" },
+	{ id: 7, name: "Kurendeblasen", datum: "22.12.2024" },
+	{ id: 8, name: "Heilig Abend", datum: "24.12.2024" },
     ];
 
     function erstelleTabelle() {
