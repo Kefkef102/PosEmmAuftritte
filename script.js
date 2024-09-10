@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mitglieder = ['Andreas', 'Uta', 'Johanna', 'Karola', 'Kevin', 'Nikolai'];
     const auftritte = [
         { id: 1, name: "Erntedankfest", datum: "06.10.2024" },
-        { id: 2, name: "Gottesdienst zum Ordinationsjubiläum", datum: "25.10.2024" },  // Korrigiertes Datum
+        { id: 2, name: "Gottesdienst zum Ordinationsjubiläum", datum: "25.10.2024" },
         { id: 3, name: "Martinsumzug", datum: "08.11.2024" },
         { id: 4, name: "Weihnachtsmarkt", datum: "01.12.2024" },
         { id: 5, name: "Adventskonzert", datum: "08.12.2024" },
@@ -61,35 +61,51 @@ document.addEventListener('DOMContentLoaded', function() {
             tdAuftritt.textContent = auftritt.name;
             row.appendChild(tdAuftritt);
 
-            // Für jedes Mitglied eine Zusage/Absage-Option
+            // Für jedes Mitglied eine Zusage/Absage-Option mit Radio-Buttons
             mitglieder.forEach(mitglied => {
                 let td = document.createElement('td');
 
-                let select = document.createElement('select');
-                select.name = `status-${auftritt.id}-${mitglied}`;
+                // Zusage Radio Button
+                let radioZusage = document.createElement('input');
+                radioZusage.type = 'radio';
+                radioZusage.name = `status-${auftritt.id}-${mitglied}`;
+                radioZusage.value = 'Zusage';
+                radioZusage.id = `zusage-${auftritt.id}-${mitglied}`;
 
-                let optionZusage = document.createElement('option');
-                optionZusage.value = 'Zusage';
-                optionZusage.textContent = 'Zusage';
-                select.appendChild(optionZusage);
+                let labelZusage = document.createElement('label');
+                labelZusage.htmlFor = `zusage-${auftritt.id}-${mitglied}`;
+                labelZusage.textContent = 'Zusage';
 
-                let optionAbsage = document.createElement('option');
-                optionAbsage.value = 'Absage';
-                optionAbsage.textContent = 'Absage';
-                select.appendChild(optionAbsage);
+                // Absage Radio Button
+                let radioAbsage = document.createElement('input');
+                radioAbsage.type = 'radio';
+                radioAbsage.name = `status-${auftritt.id}-${mitglied}`;
+                radioAbsage.value = 'Absage';
+                radioAbsage.id = `absage-${auftritt.id}-${mitglied}`;
+
+                let labelAbsage = document.createElement('label');
+                labelAbsage.htmlFor = `absage-${auftritt.id}-${mitglied}`;
+                labelAbsage.textContent = 'Absage';
 
                 // Event-Listener hinzufügen, um die Farbe bei Auswahl zu ändern
-                select.addEventListener('change', function() {
-                    if (select.value === 'Zusage') {
+                radioZusage.addEventListener('change', function() {
+                    if (radioZusage.checked) {
                         td.style.backgroundColor = 'lightgreen';
-                    } else if (select.value === 'Absage') {
-                        td.style.backgroundColor = 'lightcoral';
-                    } else {
-                        td.style.backgroundColor = ''; // Keine Auswahl, Standardfarbe
                     }
                 });
 
-                td.appendChild(select);
+                radioAbsage.addEventListener('change', function() {
+                    if (radioAbsage.checked) {
+                        td.style.backgroundColor = 'lightcoral';
+                    }
+                });
+
+                // Radio-Buttons und Labels zur Zelle hinzufügen
+                td.appendChild(radioZusage);
+                td.appendChild(labelZusage);
+                td.appendChild(radioAbsage);
+                td.appendChild(labelAbsage);
+
                 row.appendChild(td);
             });
 
@@ -101,6 +117,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
     erstelleTabelle();
 });
-
-
-
