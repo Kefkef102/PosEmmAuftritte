@@ -17,17 +17,23 @@ document.addEventListener('DOMContentLoaded', function() {
         let thead = document.createElement('thead');
         let headerRow = document.createElement('tr');
 
-        // Erste Spalte für Auftritte
+        // Erste Spalte für das Datum
+        let thDatum = document.createElement('th');
+        thDatum.textContent = 'Datum';
+        headerRow.appendChild(thDatum);
+
+        // Zweite Spalte für den Auftrittsnamen
         let thAuftritt = document.createElement('th');
         thAuftritt.textContent = 'Auftritt';
         headerRow.appendChild(thAuftritt);
 
-        // Spalten für Mitspieler
+        // Spalten für die Mitspieler
         mitglieder.forEach(mitglied => {
             let th = document.createElement('th');
             th.textContent = mitglied;
             headerRow.appendChild(th);
         });
+
         thead.appendChild(headerRow);
         table.appendChild(thead);
 
@@ -36,10 +42,17 @@ document.addEventListener('DOMContentLoaded', function() {
         auftritte.forEach(auftritt => {
             let row = document.createElement('tr');
 
+            // Zelle für das Datum des Auftritts
+            let tdDatum = document.createElement('td');
+            tdDatum.textContent = auftritt.datum;
+            row.appendChild(tdDatum);
+
+            // Zelle für den Namen des Auftritts
             let tdAuftritt = document.createElement('td');
-            tdAuftritt.textContent = `${auftritt.name} (${auftritt.datum})`;
+            tdAuftritt.textContent = auftritt.name;
             row.appendChild(tdAuftritt);
 
+            // Für jedes Mitglied eine Zusage/Absage-Option
             mitglieder.forEach(mitglied => {
                 let td = document.createElement('td');
 
