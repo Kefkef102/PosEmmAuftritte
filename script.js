@@ -61,9 +61,21 @@ document.addEventListener('DOMContentLoaded', function() {
             tdAuftritt.textContent = auftritt.name;
             row.appendChild(tdAuftritt);
 
-            // Für jedes Mitglied eine Zusage/Absage-Option mit Radio-Buttons
+            // Für jedes Mitglied eine Zusage/Absage/Noch nicht abgestimmt Option mit Radio-Buttons
             mitglieder.forEach(mitglied => {
                 let td = document.createElement('td');
+
+                // Noch nicht abgestimmt (Standard)
+                let radioNichtAbgestimmt = document.createElement('input');
+                radioNichtAbgestimmt.type = 'radio';
+                radioNichtAbgestimmt.name = `status-${auftritt.id}-${mitglied}`;
+                radioNichtAbgestimmt.value = 'Noch nicht abgestimmt';
+                radioNichtAbgestimmt.id = `nichtAbgestimmt-${auftritt.id}-${mitglied}`;
+                radioNichtAbgestimmt.checked = true; // Standardmäßig ausgewählt
+
+                let labelNichtAbgestimmt = document.createElement('label');
+                labelNichtAbgestimmt.htmlFor = `nichtAbgestimmt-${auftritt.id}-${mitglied}`;
+                labelNichtAbgestimmt.textContent = 'Noch nicht abgestimmt';
 
                 // Zusage Radio Button
                 let radioZusage = document.createElement('input');
@@ -100,7 +112,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
 
+                radioNichtAbgestimmt.addEventListener('change', function() {
+                    if (radioNichtAbgestimmt.checked) {
+                        td.style.backgroundColor = ''; // Keine Farbe
+                    }
+                });
+
                 // Radio-Buttons und Labels zur Zelle hinzufügen
+                td.appendChild(radioNichtAbgestimmt);
+                td.appendChild(labelNichtAbgestimmt);
                 td.appendChild(radioZusage);
                 td.appendChild(labelZusage);
                 td.appendChild(radioAbsage);
@@ -117,3 +137,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
     erstelleTabelle();
 });
+
