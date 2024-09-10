@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
 
     function erstelleTabelle() {
+        // Bevor die Tabelle erstellt wird, löschen wir ihren Inhalt, um Dopplungen zu vermeiden
+        table.innerHTML = '';
+
         let thead = document.createElement('thead');
         let headerRow = document.createElement('tr');
 
@@ -86,5 +89,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     erstelleTabelle();
 });
+
 
 
